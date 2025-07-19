@@ -1,0 +1,5 @@
+Draft/
+*.vsidx
+**/.vs/
+**/.cashe
+**/*.cache
