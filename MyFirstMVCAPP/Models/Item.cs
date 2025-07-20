@@ -14,6 +14,9 @@ namespace MyFirstMVCAPP.Models
         [Range(0, 1000000, ErrorMessage = "Value for {0} must be between {1} and {2}")]
         public decimal Price { get; set; }
         public DateTime CreateDate { get; set; } = DateTime.Now;
-
+        
+        [Required]
+        [DisplayName("Category")]
+        public int CategoryId { get; set; }
     }
 }
