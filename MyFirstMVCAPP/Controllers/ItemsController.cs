@@ -35,6 +35,7 @@ namespace MyFirstMVCAPP.Controllers
             {
                 _db.Items.Add(item);
                 _db.SaveChanges();
+                TempData["successData"] = "Item has been added successfully";
                 return RedirectToAction("Index");
             }
             else
@@ -70,6 +71,7 @@ namespace MyFirstMVCAPP.Controllers
             {
                 _db.Items.Update(item);
                 _db.SaveChanges();
+                TempData["successData"] = "Item has been updated successfully";
                 return RedirectToAction("Index");
             }
             else
@@ -103,6 +105,7 @@ namespace MyFirstMVCAPP.Controllers
             }
             _db.Remove(item);
             _db.SaveChanges();
+            TempData["successData"] = "Item has been deleted successfully";
             return RedirectToAction("Index");
         }
 
