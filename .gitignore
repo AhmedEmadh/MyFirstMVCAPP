@@ -3,3 +3,5 @@ Draft/
 **/.vs/
 **/.cashe
 **/*.cache
+*.pubxml
+*.publishsettings
