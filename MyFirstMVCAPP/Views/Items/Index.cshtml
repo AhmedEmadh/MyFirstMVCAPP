@@ -25,16 +25,29 @@
         <tr>
             <th scope="col">Name</th>
             <th scope="col">Price</th>
+            <th scope="col">Category</th>
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model)
         {
             <tr>
-                <td scope="row" width="50%">@item.Name</td>
-                <td width="30%">
+                <td scope="row" width="40%">@item.Name</td>
+                <td width="25%">
                     @item.Price.ToString("C")
 
+                    
+                </td>
+                @* Category *@
+                <td width="30%">
+                    @if (item.Category != null && item.CategoryId != 1)
+                    {
+                        @item.Category.Name
+                    }
+                    else
+                    {
+                        <span class="text-danger">No Category</span>
+					}
                     <span class="float-end me-4">
                         <a asp-controller="Items" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-success m-1">
                             <i class="bi bi-pencil"></i>

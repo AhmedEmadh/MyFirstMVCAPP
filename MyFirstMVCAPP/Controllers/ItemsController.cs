@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using MyFirstMVCAPP.Data;
 using MyFirstMVCAPP.Models;
 using System.Collections;
@@ -30,7 +31,7 @@ namespace MyFirstMVCAPP.Controllers
         }
         public IActionResult Index()
         {
-            IEnumerable<Item> items = _db.Items.ToList();
+            IEnumerable<Item> items = _db.Items.Include(item => item.Category).ToList();
             return View(items);
         }
         public IActionResult New()
