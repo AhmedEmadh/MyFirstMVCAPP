@@ -3,13 +3,7 @@
     ViewData["Title"] = "Items";
 }
 
-@if (TempData["successData"] != null)
-{
-    <h3 style="color:brown;">
-        @TempData["successData"]
-    </h3>
-}
-
+<partial name="_Notifications" />
 <div class="row pt-4">
     <div class="col-6">
         <h2 class="text-primary">Items View</h2>
