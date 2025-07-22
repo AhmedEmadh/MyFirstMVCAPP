@@ -1,14 +1,23 @@
-﻿@if (TempData["successData"] != null)
+﻿<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+
+@if (TempData["successData"] != null)
 {
     <h3 style="color:brown;">
         @TempData["successData"]
     </h3>
-
+    <script>
+		toastr.success('@TempData["successData"]', 'Success', { timeOut: 5000 });
+    </script>
+}
 
     @if (TempData["errorData"] != null)
     {
         <h3 class="text-danger">
             @TempData["errorData"]
         </h3>
+        <script>
+		    toastr.error('@TempData["errorData"]', 'Error', { timeOut: 5000 });
+	    </script>
     }
-}
