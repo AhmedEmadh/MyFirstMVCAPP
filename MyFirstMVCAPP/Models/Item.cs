@@ -1,5 +1,7 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Diagnostics.CodeAnalysis;
 
 namespace MyFirstMVCAPP.Models
 {
@@ -15,8 +17,10 @@ namespace MyFirstMVCAPP.Models
         public decimal Price { get; set; }
         public DateTime CreateDate { get; set; } = DateTime.Now;
         
-        [Required]
+        [AllowNull]
         [DisplayName("Category")]
+        [ForeignKey("Category")]
         public int CategoryId { get; set; }
+        public Category? Category { get; set; }
     }
 }

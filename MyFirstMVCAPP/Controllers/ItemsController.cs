@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using MyFirstMVCAPP.Data;
 using MyFirstMVCAPP.Models;
 using System.Collections;
@@ -12,7 +13,21 @@ namespace MyFirstMVCAPP.Controllers
             _db = db;
         }
         private readonly AppDbContext _db;
-
+        public void createSelectList(int selectId = 0)
+        {
+            ViewBag.ListItemsSelectedID = selectId;
+            //List<Category> categories = new List<Category> {
+            //  new Category() {Id = 0, Name = "Select Category"},
+            //  new Category() {Id = 1, Name = "Computers"},
+            //  new Category() {Id = 2, Name = "Mobiles"},
+            //  new Category() {Id = 3, Name = "Electric machines"},
+            //  new Category() {Id = 3, Name = "Animals"},
+            //};
+            List<Category> categories = _db.Categories.ToList();
+            ViewBag.ListItems = categories;
+            SelectList listItems = new SelectList(categories, "Id", "Name", selectId);
+            ViewBag.CategoryList = listItems;
+        }
         public IActionResult Index()
         {
             IEnumerable<Item> items = _db.Items.ToList();
@@ -20,6 +35,7 @@ namespace MyFirstMVCAPP.Controllers
         }
         public IActionResult New()
         {
+            createSelectList();
             return View();
         }
         [HttpPost]
@@ -55,6 +71,7 @@ namespace MyFirstMVCAPP.Controllers
             {
                 return NotFound();
             }
+            createSelectList(item.CategoryId);
             return View(item);
         }
         // Post Edit Item
@@ -76,6 +93,7 @@ namespace MyFirstMVCAPP.Controllers
             }
             else
             {
+                createSelectList(item.CategoryId);
                 return View(item);
             }
         }
@@ -91,6 +109,7 @@ namespace MyFirstMVCAPP.Controllers
             {
                 return NotFound();
             }
+            createSelectList(item.CategoryId);
             return View(item);
         }
         //POST
