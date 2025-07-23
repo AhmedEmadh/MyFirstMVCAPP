@@ -10,7 +10,7 @@ namespace MyFirstMVCAPP.Data
         }
         public DbSet<Item> Items { get; set; }
         public DbSet<Category> Categories { get; set; }
-
+        public DbSet<Employee> Employees { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Category>().HasData(

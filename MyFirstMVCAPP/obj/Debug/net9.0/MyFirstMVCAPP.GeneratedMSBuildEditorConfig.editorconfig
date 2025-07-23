@@ -28,6 +28,26 @@ build_property._RazorSourceGeneratorDebug =
 build_property.EffectiveAnalysisLevelStyle = 9.0
 build_property.EnableCodeStyleSeverity = 
 
+[D:/GitHub/MyFirstMVCAPP/MyFirstMVCAPP/Areas/Employees/Views/Employees/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcRW1wbG95ZWVzXFZpZXdzXEVtcGxveWVlc1xDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/GitHub/MyFirstMVCAPP/MyFirstMVCAPP/Areas/Employees/Views/Employees/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcRW1wbG95ZWVzXFZpZXdzXEVtcGxveWVlc1xEZWxldGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/GitHub/MyFirstMVCAPP/MyFirstMVCAPP/Areas/Employees/Views/Employees/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcRW1wbG95ZWVzXFZpZXdzXEVtcGxveWVlc1xEZXRhaWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/GitHub/MyFirstMVCAPP/MyFirstMVCAPP/Areas/Employees/Views/Employees/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcRW1wbG95ZWVzXFZpZXdzXEVtcGxveWVlc1xFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/GitHub/MyFirstMVCAPP/MyFirstMVCAPP/Areas/Employees/Views/Employees/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcRW1wbG95ZWVzXFZpZXdzXEVtcGxveWVlc1xJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/GitHub/MyFirstMVCAPP/MyFirstMVCAPP/Areas/Employees/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcRW1wbG95ZWVzXFZpZXdzXEhvbWVcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
