@@ -16,5 +16,9 @@ namespace MyFirstMVCAPP.Repository
         {
             return Context.Set<T>().Find(id);
         }
+        public IEnumerable<T> FindAll()
+        {
+            return Context.Set<T>().ToList();
+        }
     }
 }

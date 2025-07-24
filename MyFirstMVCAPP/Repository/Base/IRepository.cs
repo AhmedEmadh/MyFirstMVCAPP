@@ -3,5 +3,6 @@
     public interface IRepository<T> where T : class
     {
         public T FindByID(int id);
+        public IEnumerable<T> FindAll();
     }
 }
