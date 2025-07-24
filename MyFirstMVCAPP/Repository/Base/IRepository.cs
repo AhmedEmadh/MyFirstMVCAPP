@@ -4,5 +4,8 @@
     {
         public T FindByID(int id);
         public IEnumerable<T> FindAll();
+
+        public Task<T> FindByIDAsync(int id);
+        public Task<IEnumerable<T>> FindAllAsync();
     }
 }

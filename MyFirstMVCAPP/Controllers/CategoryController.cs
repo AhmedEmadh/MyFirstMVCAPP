@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MyFirstMVCAPP.Models;
 using MyFirstMVCAPP.Repository.Base;
+using System.Threading.Tasks;
 
 namespace MyFirstMVCAPP.Controllers
 {
@@ -12,9 +13,9 @@ namespace MyFirstMVCAPP.Controllers
         }
 
         private IRepository<Category> _repository;
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View(_repository.FindAll());
+            return View(await _repository.FindAllAsync());
         }
     }
 }

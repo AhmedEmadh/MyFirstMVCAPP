@@ -1,4 +1,5 @@
-﻿using MyFirstMVCAPP.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using MyFirstMVCAPP.Data;
 using MyFirstMVCAPP.Repository.Base;
 
 namespace MyFirstMVCAPP.Repository
@@ -19,6 +20,16 @@ namespace MyFirstMVCAPP.Repository
         public IEnumerable<T> FindAll()
         {
             return Context.Set<T>().ToList();
+        }
+
+        public async Task<T> FindByIDAsync(int id)
+        {
+            return await Context.Set<T>().FindAsync(id);
+        }
+
+        public async Task<IEnumerable<T>> FindAllAsync()
+        {
+            return await Context.Set<T>().ToListAsync();
         }
     }
 }
