@@ -13,9 +13,10 @@ namespace MyFirstMVCAPP.Controllers
         }
 
         private IRepository<Category> _repository;
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-            return View(await _repository.FindAllAsync());
+            
+            return View(_repository.FindAll());
         }
     }
 }

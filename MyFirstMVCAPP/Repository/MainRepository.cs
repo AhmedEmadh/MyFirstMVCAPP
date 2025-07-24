@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using MyFirstMVCAPP.Data;
 using MyFirstMVCAPP.Repository.Base;
+using System.Linq.Expressions;
 
 namespace MyFirstMVCAPP.Repository
 {
@@ -30,6 +31,44 @@ namespace MyFirstMVCAPP.Repository
         public async Task<IEnumerable<T>> FindAllAsync()
         {
             return await Context.Set<T>().ToListAsync();
+        }
+
+        public IEnumerable<T> FindAll(params string[] agers)
+        {
+            IQueryable<T> query = Context.Set<T>();
+
+            if (agers.Length > 0)
+            {
+                foreach (var ager in agers)
+                {
+                    query = query.Include(ager);
+                }
+            }
+
+            return query.ToList();
+        }
+
+        public async Task<IEnumerable<T>> FindAllAsync(params string[] agers)
+        {
+            IQueryable<T> query = Context.Set<T>();
+            if (agers.Length > 0)
+            {
+                foreach (var ager in agers)
+                {
+                    query = query.Include(ager);
+                }
+            }
+            return await query.ToListAsync();
+        }
+
+        public T SelectOne(Expression<Func<T, bool>> match)
+        {
+            return Context.Set<T>().SingleOrDefault(match);
+        }
+
+        public async Task<T> SelectOneAsync(Expression<Func<T, bool>> match)
+        {
+            return await Context.Set<T>().SingleOrDefaultAsync(match);
         }
     }
 }
