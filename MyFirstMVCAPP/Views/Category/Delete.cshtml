@@ -1,0 +1,30 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model Category
+@{
+    ViewData["Title"] = "Delete Category";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<form method="post" asp-action="DeleteCategory">
+    <div class="border p-3 mt-4">
+        <div class="row pb-2">
+            <h2 class="text-primary">Delete</h2>
+            <hr />
+        </div>
+        <div asp-validation-summary="All"></div>
+        <input type="hidden" asp-for="Id" />
+        <div class="mb-3">
+            <label asp-for="Name"></label>
+            <input asp-for="Name" disabled class="form-control">
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+        <br />
+        <button type="submit" class="btn btn-danger" style="width:150px">Delete</button>
+        <a asp-action="Index" asp-controller="Category" class="btn btn-secondary" style="width:150px">Back to Categories</a>
+    </div>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+

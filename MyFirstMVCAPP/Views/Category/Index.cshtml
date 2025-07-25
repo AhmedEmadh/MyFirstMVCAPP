@@ -1,8 +1,9 @@
-﻿@model IEnumerable<Category>
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model IEnumerable<Category>
 @{
     ViewData["Title"] = "Category";
 }
-
+<partial name="_Notifications" />
 <div class="container p-3">
 
 
@@ -28,6 +29,10 @@
         <tbody>
             @foreach (var item in Model)
             {
+                @if(item.Id == 1) // Skip the first category (e.g., "Uncategorized")
+                {
+                    continue;
+				}
                 <tr>
                     <td scope="row">
                         @item.Name

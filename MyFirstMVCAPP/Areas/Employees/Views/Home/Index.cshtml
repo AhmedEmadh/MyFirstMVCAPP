@@ -1,5 +1,7 @@
-﻿@{
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
 	ViewData["Title"] = "Employee";
 	Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <h1 class=""> From Employee Area, from home controller</h1>
+<a asp-controller="Employees" asp-action="Index">To Employee List</a>

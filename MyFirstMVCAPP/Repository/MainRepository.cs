@@ -70,5 +70,77 @@ namespace MyFirstMVCAPP.Repository
         {
             return await Context.Set<T>().SingleOrDefaultAsync(match);
         }
+
+        public void Add(T entity)
+        {
+            Context.Set<T>().Add(entity);
+            Context.SaveChanges();
+        }
+
+        public void AddAsync(T entity)
+        {
+            Context.Set<T>().Add(entity);
+            Context.SaveChangesAsync();
+        }
+
+        public void Update(T entity)
+        {
+            Context.Set<T>().Update(entity);
+            Context.SaveChanges();
+        }
+
+        public Task UpdateAsync(T entity)
+        {
+            Context.Set<T>().Update(entity);
+            return Context.SaveChangesAsync();
+        }
+
+        public void Delete(T entity)
+        {
+            Context.Set<T>().Remove(entity);
+            Context.SaveChanges();
+        }
+
+        public Task DeleteAsync(T entity)
+        {
+            Context.Set<T>().Remove(entity);
+            return Context.SaveChangesAsync();
+        }
+
+        public void AddList(IEnumerable<T> entities)
+        {
+            Context.Set<T>().AddRange(entities);
+            Context.SaveChanges();
+        }
+
+        public Task AddListAsync(IEnumerable<T> entities)
+        {
+            Context.Set<T>().AddRange(entities);
+            return Context.SaveChangesAsync();
+        }
+
+        public void UpdateList(IEnumerable<T> entities)
+        {
+            Context.Set<T>().UpdateRange(entities);
+            Context.SaveChanges();
+        }
+
+        public Task UpdateListAsync(IEnumerable<T> entities)
+        {
+            Context.Set<T>().UpdateRange(entities);
+            return Context.SaveChangesAsync();
+        }
+
+        public void DeleteList(IEnumerable<T> entities)
+        {
+            Context.Set<T>().RemoveRange(entities);
+            Context.SaveChanges();
+        }
+
+        public Task DeleteListAsync(IEnumerable<T> entities)
+        {
+            Context.Set<T>().RemoveRange(entities);
+            return Context.SaveChangesAsync();
+        }
     }
 }
