@@ -7,16 +7,16 @@ namespace MyFirstMVCAPP.Controllers
 {
     public class CategoryController : Controller
     {
-        public CategoryController(IRepository<Category> repository)
+        public CategoryController(IUnitOfWork UnitOfWork)
         {
-            _repository = repository;
+            _UnitOfWork = UnitOfWork;
         }
 
-        private IRepository<Category> _repository;
+        private IUnitOfWork _UnitOfWork;
         public IActionResult Index()
         {
 
-            return View(_repository.FindAll());
+            return View(_UnitOfWork.Categories.FindAll());
         }
         public IActionResult New()
         {
@@ -33,7 +33,7 @@ namespace MyFirstMVCAPP.Controllers
             }
             if (ModelState.IsValid)
             {
-                _repository.Add(category);
+                _UnitOfWork.Categories.Add(category);
                 TempData["successData"] = "Category has been added successfully";
                 return RedirectToAction("Index");
             }
@@ -45,7 +45,7 @@ namespace MyFirstMVCAPP.Controllers
 
         public IActionResult Edit(int id)
         {
-            Category category = _repository.FindByID(id);
+            Category category = _UnitOfWork.Categories.FindByID(id);
             if (category == null)
             {
                 return NotFound();
@@ -63,7 +63,7 @@ namespace MyFirstMVCAPP.Controllers
             }
             if (ModelState.IsValid)
             {
-                _repository.Update(category);
+                _UnitOfWork.Categories.Update(category);
                 TempData["successData"] = "Category has been updated successfully";
                 return RedirectToAction("Index");
             }
@@ -79,7 +79,7 @@ namespace MyFirstMVCAPP.Controllers
             {
                 return NotFound();
             }
-            Category category = _repository.FindByID(id.Value);
+            Category category = _UnitOfWork.Categories.FindByID(id.Value);
             if (category == null)
             {
                 return NotFound();
@@ -93,13 +93,13 @@ namespace MyFirstMVCAPP.Controllers
             {
                 return NotFound();
             }
-            var category = _repository.FindByID((int)id);
+            var category = _UnitOfWork.Categories.FindByID((int)id);
             if (category == null)
             {
                 return NotFound();
             }
 
-            _repository.Delete(category);
+            _UnitOfWork.Categories.Delete(category);
             TempData["successData"] = "Category has been deleted successfully";
             return RedirectToAction("Index");
         }
