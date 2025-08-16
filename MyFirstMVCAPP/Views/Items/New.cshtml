@@ -26,6 +26,10 @@
             </select>
             <span asp-validation-for="CategoryId" class="text-danger"></span>
         </div>
+        <div>
+            <input type="file" onchange="loadFile(event)" />
+            <img id="myImg" height="200" />
+        </div>
         <br />
             <button type="submit" class="btn btn-primary" style="width:150px">save</button>
             <a asp-action="Index" asp-controller="Items" class="btn btn-secondary" style="width:150px">Back to items</a>
@@ -35,4 +39,14 @@
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
 }
+<script>
+    var loadFile = function(event) {
+        var reader = new FileReader();
+        reader.onload = function () {
+            var myImg = document.getElementById('myImg');
+            myImg.src = reader.result;
+        }
+        reader.readAsDataURL(event.target.files[0]);
+    }
+</script>
 
