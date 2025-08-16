@@ -19,6 +19,9 @@
         <tr>
             <th scope="col">Name</th>
             <th scope="col">Price</th>
+            <th scope="col">
+                Img
+            </th>
             <th scope="col">Category</th>
         </tr>
     </thead>
@@ -31,6 +34,9 @@
                     @item.Price.ToString("C")
 
                     
+                </td>
+                <td>
+                    <img src="~/images/@item.imagePath" style="width:48px" class="img-thumbnail" />
                 </td>
                 @* Category *@
                 <td width="30%">

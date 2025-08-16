@@ -1,6 +1,9 @@
 wwwroot\css\bootswatchStyle.css
 wwwroot\css\site.css
 wwwroot\favicon.ico
+wwwroot\images\1679697716058.jpg
+wwwroot\images\Ahmed Emad.jpg
+wwwroot\images\mihawk.jpg
 wwwroot\js\site.js
 wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css
 wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css.map

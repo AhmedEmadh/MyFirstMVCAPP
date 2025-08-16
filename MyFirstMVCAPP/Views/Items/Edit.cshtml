@@ -3,7 +3,7 @@
     ViewData["Title"] = "Edit Item";
 }
 
-<form method="post">
+<form method="post" enctype="multipart/form-data">
     <div class="border p-3 mt-4">
         <div class="row pb-2">
             <h2 class="text-primary">Edit</h2>
@@ -26,6 +26,30 @@
             </select>
             <span asp-validation-for="CategoryId" class="text-danger"></span>
         </div>
+        <div>
+            <input type="file" asp-for="clientFile" accept="image/*" onchange="loadFile(event)" />
+            <br />
+
+            @if (!string.IsNullOrEmpty(Model.imagePath))
+            {
+                <!-- Hidden input to keep old image path -->
+                <input type="hidden" name="ExistingImagePath" value="@Model.imagePath" />
+
+                <!-- Show existing image as 200x200 thumbnail -->
+                <img id="myImg" src="~/images/@Model.imagePath"
+                     height="200" width="200"
+                     style="object-fit:cover;"
+                     class="img-thumbnail" />
+            }
+            else
+            {
+                <!-- Start hidden, only show when user uploads -->
+                <img id="myImg"
+                     height="200" width="200"
+                     style="display:none; object-fit:cover;"
+                     class="img-thumbnail" />
+            }
+        </div>
         <br/>
         <button type="submit" class="btn btn-primary" style="width:150px">save</button>
         <a asp-action="Index" asp-controller="Items" class="btn btn-secondary" style="width:150px">Back to items</a>
@@ -35,4 +59,22 @@
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
 }
+<script>
+    // if my img have a photo inside it then set the input file image with that (don't leave it empty)
 
+        
+    function loadFile(event) {
+        const img = document.getElementById("myImg");
+        const file = event.target.files[0];
+
+        if (file) {
+            // Show preview
+            img.src = URL.createObjectURL(file);
+            img.style.display = "block";
+        } else {
+            // Hide image if no file selected
+            img.src = "";
+            img.style.display = "none";
+        }
+    }
+</script>

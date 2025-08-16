@@ -5,15 +5,18 @@ using MyFirstMVCAPP.Data;
 using MyFirstMVCAPP.Models;
 using MyFirstMVCAPP.Repository.Base;
 using System.Collections;
+using IHostingEnvironment = Microsoft.AspNetCore.Hosting.IWebHostEnvironment;
 
 namespace MyFirstMVCAPP.Controllers
 {
     public class ItemsController : Controller
     {
-        public ItemsController(IUnitOfWork unitOfWork)
+        public ItemsController(IUnitOfWork unitOfWork, IHostingEnvironment host)
         {
             _unitOfWork = unitOfWork;
+            _host = host;
         }
+        private readonly IHostingEnvironment _host;
         private readonly IUnitOfWork _unitOfWork;
         public void createSelectList(int selectId = 0)
         {
@@ -52,6 +55,15 @@ namespace MyFirstMVCAPP.Controllers
             }
             if (ModelState.IsValid)
             {
+                string fileName = string.Empty;
+                if (item.clientFile != null)
+                {
+                    string myUpload = Path.Combine(_host.WebRootPath, "images");
+                    fileName = item.clientFile.FileName;
+                    string fullPath = Path.Combine(myUpload, fileName);
+                    item.clientFile.CopyTo(new FileStream(fullPath, FileMode.Create));
+                    item.imagePath = fileName;
+                }
                 _unitOfWork.Items.Add(item);
                 _unitOfWork.ComitChanges();
                 TempData["successData"] = "Item has been added successfully";
@@ -87,10 +99,40 @@ namespace MyFirstMVCAPP.Controllers
             {
                 ModelState.AddModelError("Name", "Name cannot be a number");
             }
+
             if (ModelState.IsValid)
             {
-                _unitOfWork.Items.Update(item);
+                // Get existing item from DB to preserve old image if no new one is uploaded
+                var existingItem = _unitOfWork.Items.FindByID(item.Id);
+                if (existingItem == null)
+                {
+                    return NotFound();
+                }
+
+                string fileName = existingItem.imagePath; // keep old image by default
+
+                if (item.clientFile != null)
+                {
+                    string myUpload = Path.Combine(_host.WebRootPath, "images");
+                    fileName = item.clientFile.FileName;
+                    string fullPath = Path.Combine(myUpload, fileName);
+
+                    // Save new file
+                    using (var stream = new FileStream(fullPath, FileMode.Create))
+                    {
+                        item.clientFile.CopyTo(stream);
+                    }
+                }
+
+                // Update item values
+                existingItem.Name = item.Name;
+                existingItem.Price = item.Price;
+                existingItem.CategoryId = item.CategoryId;
+                existingItem.imagePath = fileName;
+
+                _unitOfWork.Items.Update(existingItem);
                 _unitOfWork.ComitChanges();
+
                 TempData["successData"] = "Item has been updated successfully";
                 return RedirectToAction("Index");
             }
@@ -100,6 +142,7 @@ namespace MyFirstMVCAPP.Controllers
                 return View(item);
             }
         }
+
         // Get
         public IActionResult Delete(int? Id)
         {
