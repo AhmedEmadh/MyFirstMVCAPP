@@ -6,7 +6,7 @@ namespace MyFirstMVCAPP.Repository.Base
     {
         IRepository<Category> Categories { get; }
         IRepository<Item> Items { get; }
-        IRepository<Employee> Employees { get; }
+        IEmpRepo Employees { get; }
         int ComitChanges();
     }
 }

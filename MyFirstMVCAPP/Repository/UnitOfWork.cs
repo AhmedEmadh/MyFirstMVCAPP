@@ -11,14 +11,14 @@ namespace MyFirstMVCAPP.Repository
             _context = context;
             Categories = new MainRepository<Category>(_context);
             Items = new MainRepository<Item>(_context);
-            Employees = new MainRepository<Employee>(_context);
+            Employees = new EmpRepo(_context);
         }
         private readonly AppDbContext _context;
         public IRepository<Category> Categories { get; private set; }
 
         public IRepository<Item> Items { get; private set; }
 
-        public IRepository<Employee> Employees { get; private set; }
+        public IEmpRepo Employees { get; private set; }
 
         public int ComitChanges()
         {
