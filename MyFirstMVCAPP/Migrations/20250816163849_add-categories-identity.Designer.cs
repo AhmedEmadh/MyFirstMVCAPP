@@ -12,8 +12,8 @@ using MyFirstMVCAPP.Data;
 namespace MyFirstMVCAPP.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250725214047_enable_Category_Identity")]
-    partial class enable_Category_Identity
+    [Migration("20250816163849_add-categories-identity")]
+    partial class addcategoriesidentity
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
