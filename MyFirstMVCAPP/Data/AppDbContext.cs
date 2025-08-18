@@ -29,6 +29,22 @@ namespace MyFirstMVCAPP.Data
             .HasConstraintName("FK_Items_Categories_CategoryId")
             .OnDelete(DeleteBehavior.Restrict); // Optional, or .Cascade/.SetNull etc.
 
+            modelBuilder.Entity<IdentityRole>().HasData(
+                new IdentityRole()
+                {
+                    Id = "74509dd5-479e-4642-88aa-69d4766b4627",
+                    Name = "Admin",
+                    NormalizedName = "admin",
+                    ConcurrencyStamp = "f56285d3-0deb-453a-90b2-c27a938aa89a",
+                },
+                new IdentityRole()
+                {
+                    Id = "f75cbefc-74e4-44cc-9793-ababb29c825f",
+                    Name = "User",
+                    NormalizedName = "user",
+                    ConcurrencyStamp = "d57e6aa4-6816-424b-954b-7c557f81d181",
+                });
+
             base.OnModelCreating(modelBuilder);
         }
     }
