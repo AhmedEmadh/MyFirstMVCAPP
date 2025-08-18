@@ -44,7 +44,7 @@ namespace MyFirstMVCAPP.Controllers
                 return View(category);
             }
         }
-
+        [Authorize(Roles = clsRoles.roleAdmin)]
         public IActionResult Edit(int id)
         {
             Category category = _UnitOfWork.Categories.FindByID(id);
@@ -56,6 +56,7 @@ namespace MyFirstMVCAPP.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = clsRoles.roleAdmin)]
         public IActionResult Edit(Category category)
         {
             int result;
@@ -75,6 +76,7 @@ namespace MyFirstMVCAPP.Controllers
             }
         }
 
+        [Authorize(Roles = clsRoles.roleAdmin)]
         public IActionResult Delete(int? id)
         {
             if (id == null)
@@ -89,6 +91,7 @@ namespace MyFirstMVCAPP.Controllers
             return View(category);
         }
         [HttpPost]
+        [Authorize(Roles = clsRoles.roleAdmin)]
         public IActionResult DeleteCategory(int? id)
         {
             if (id == null)

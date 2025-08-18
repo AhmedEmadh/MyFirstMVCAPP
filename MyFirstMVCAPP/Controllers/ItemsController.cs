@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MyFirstMVCAPP.Data;
@@ -75,6 +76,7 @@ namespace MyFirstMVCAPP.Controllers
             }
         }
         // Get View for Edit Item
+        [Authorize(Roles = clsRoles.roleAdmin)]
         public IActionResult Edit(int? Id)
         {
             if (Id == null || Id == 0)
@@ -92,6 +94,7 @@ namespace MyFirstMVCAPP.Controllers
         // Post Edit Item
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = clsRoles.roleAdmin)]
         public IActionResult Edit(Item item)
         {
             int result;
@@ -144,6 +147,7 @@ namespace MyFirstMVCAPP.Controllers
         }
 
         // Get
+        [Authorize(Roles = clsRoles.roleAdmin)]
         public IActionResult Delete(int? Id)
         {
             if (Id == null || Id == 0)
