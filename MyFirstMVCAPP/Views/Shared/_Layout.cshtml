@@ -41,13 +41,13 @@
                         <li class="nav-item">
 							<a class="nav-link text-dark" asp-area="" asp-controller="Category" asp-action="Index">Category</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Register">New User</a>
+                        <li>
+                            <a class="nav-link text-dark" asp-controller="Roles">Roles</a>
                         </li>
-                        <div class="navbar-nav ms-auto">
+                        <li class="navbar-nav ms-auto">
 							@* Login Partial View *@
 						    <partial name="_LoginPartial"/>
-                        </div>
+                        </li>
                     </ul>
                 </div>
             </div>
